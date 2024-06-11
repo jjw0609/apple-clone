@@ -17,3 +17,11 @@ p {
 .global-nav {
 	height: 44px;
 }
+.global-nav-links {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 1000px;
+	height: 100%;
+	margin: 0 auto;
+}
