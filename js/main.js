@@ -72,7 +72,14 @@
     }
 
     function calcValues(values, currentYOffset) {
+        let rv;
 
+        // 현재 씬(스크롤 section)에서 스크롤된 범위를 비율로 구하기
+        let scrollRatio = currentYOffset / sceneInfo[currentScene].scrollHeight;
+
+        rv = scrollRatio * (values[1] - values[0]) + values[0];
+
+        return rv;
     }
 
     function palyAnimation() {
@@ -83,10 +90,8 @@
         switch (currentScene) {
             case 0:
                 // console.log('0 play');
-                let messageA_opacity_0 = values.messageA_opacity[0];
-                let messageA_opacity_1 = values.messageA_opacity[1];
-
-                calcValues(values, currentYOffset);
+                let messageA_opacity_in = calcValues(values.messageA_opacity, currentYOffset);
+                objs.messageA.style.opacity = messageA_opacity_in;
 
                 break;
             case 1:
