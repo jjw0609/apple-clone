@@ -105,7 +105,7 @@
         let imgElem;
         for(let i=0 ; i<sceneInfo[0].values.videoImageCount; i++) {
             imgElem = new Image();
-            imgElem.src = `./video/001/IMG_${6726 + i}.JPG`;
+            imgElem.src = `/video/001/IMG_${6726 + i}.JPG`;
             sceneInfo[0].objs.videoImages.push(imgElem);
         }
     }
@@ -137,6 +137,9 @@
         }
 
         document.body.setAttribute('id', `show-scene-${currentScene}`);
+
+        const heightRatio = window.innerHeight / 1080;
+        sceneInfo[0].objs.canvas.style.transform = `translate3d(-50% -50%, 0) scale(${heightRatio})`;
     }
 
     function calcValues(values, currentYOffset) {
@@ -181,7 +184,7 @@
                 // console.log('0 play');
                 let sequence = Math.round(calcValues(values.imageSequence, currentYOffset));
 
-                objs.context.drawImage(videoImages[sequence], 0, 0);
+                objs.context.drawImage(sceneInfo[0].objs.videoImages[sequence], 0, 0);
 
                 if (scrollRatio <= 0.22) {
                     // in
