@@ -387,6 +387,15 @@
                 objs.context.fillRect(parseInt(calcValues(values.rect1X, currentYOffset)), 0, parseInt(whiteRectWidth), objs.canvas.height);
                 objs.context.fillRect(parseInt(calcValues(values.rect2X, currentYOffset)), 0, parseInt(whiteRectWidth), objs.canvas.height);
 
+                if(scrollRatio < values.rect1X[2].end) {
+                    step = 1;
+                    objs.canvas.classList.remove('sticky-elem');
+                } else {
+                    step = 2;
+                    objs.canvas.classList.add('sticky-elem');
+                    objs.canvas.style.top = `${-(objs.canvas.height - objs.canvas.height * canvasScaleRatio) / 2}px`;
+                }
+
                 break;
         }
     }
