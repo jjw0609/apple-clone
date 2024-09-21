@@ -389,10 +389,16 @@
 
                 if(scrollRatio < values.rect1X[2].end) {
                     step = 1;
-                    objs.canvas.classList.remove('sticky-elem');
+                    objs.canvas.classList.remove('sticky');
                 } else {
                     step = 2;
-                    objs.canvas.classList.add('sticky-elem');
+
+                    // 이미지 블렌드
+                    // imageBlendY: [0, 0, {start: 0, end: 0}]
+                    objs.context.drawImage(img, x, y, 200, height);
+
+
+                    objs.canvas.classList.add('sticky');
                     objs.canvas.style.top = `${-(objs.canvas.height - objs.canvas.height * canvasScaleRatio) / 2}px`;
                 }
 
