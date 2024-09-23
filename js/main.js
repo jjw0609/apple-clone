@@ -348,6 +348,7 @@
                 break;
 
             case 3:
+                let step = 0;
                 // console.log('3 play');
                 // 가로/세로 모두 꽉차게 하기 위해 여기서 세팅(계산 필요)
                 const widthRatio = window.innerWidth / objs.canvas.width;
@@ -419,6 +420,12 @@
                         values.canvas_scale[2].end = values.canvas_scale[2].start + 0.2;
 
                         objs.canvas.style.trasform = `scale(${calcValues(values.canvas_scale, currentYOffset)});`;
+                        objs.canvas.style.marginTop = 0;
+                    }
+
+                    if(scrollRatio > values.canvas_scale[2].end && values.canvas_scale[2].end > 0) {
+                        objs.canvas.classList.remove('sticky');
+                        objs.canvas.style.marginTop = `${scrollHeight * 0.4}px`;
                     }
                 }
 
