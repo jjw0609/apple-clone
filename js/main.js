@@ -484,16 +484,30 @@
         document.body.classList.remove('before-load');
         setLayout();
         sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.videoImages[0], 0, 0);
+
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 600) {
+                setLayout();
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            yOffset = window.pageYOffset;
+            scrollLoop();
+            checkMenu();
+
+            if(!rafState) {
+                rafId = requestAnimationFrame(loop);
+                rafState = true;
+            }
+        });
+
+        window.addEventListener('orientationchange', setLayout);
+
+        document.querySelector('.loading').addEventListener('transitionend', (e) => {
+            document.body.removeChild(e.currentTarget);
+        });
     });
-    window.addEventListener('resize', () => {
-        if(window.innerWidth > 600) {
-            setLayout();
-        }
-    });
-    window.addEventListener('orientationchange', setLayout);
-    document.querySelector('.loading').addEventListener('transitionend', (e) => {
-        document.body.removeChild(e.currentTarget);
-    })
 
     function loop() {
         delayedYOffset = delayedYOffset + (yOffset - delayedYOffset) * acc;
@@ -530,15 +544,4 @@
             rafState = false;
         }
     }
-
-    window.addEventListener('scroll', () => {
-        yOffset = window.pageYOffset;
-        scrollLoop();
-        checkMenu();
-
-        if(!rafState) {
-            rafId = requestAnimationFrame(loop);
-            rafState = true;
-        }
-    })
 })();
