@@ -486,8 +486,9 @@
         sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.videoImages[0], 0, 0);
 
         window.addEventListener('resize', () => {
-            if(window.innerWidth > 600) {
+            if(window.innerWidth > 900) {
                 setLayout();
+                sceneInfo[3].values.rectStartY = 0;
             }
         });
 
@@ -502,7 +503,9 @@
             }
         });
 
-        window.addEventListener('orientationchange', setLayout);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(setLayout, 500);
+        });
 
         document.querySelector('.loading').addEventListener('transitionend', (e) => {
             document.body.removeChild(e.currentTarget);
